@@ -12,7 +12,7 @@ export const books = [
     id: 2,
     author: "Fitzgerald",
     title: "The Great Gatsby",
-    image: "gifs/week1.png",
+    image: "gifs/week4.gif",
     more: "https://www.goodreads.com/book/show/2657.The_Great_Gatsby",
     description:
       "The Great Gatsby is a novel by F. Scott Fitzgerald that tells the story of Jay Gatsby, a wealthy and mysterious",
