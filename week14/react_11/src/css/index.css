@@ -1,0 +1,117 @@
+/* ── Global font & rendering ────────────────────────────────
+   These properties apply to the entire app via the :root
+   selector. Setting them here means every element inherits
+   them unless overridden elsewhere.                          */
+:root {
+  font-family:
+    system-ui, Avenir, Helvetica, Arial, sans-serif; /* font stack: tries each in order, falls back to the next */
+  line-height: 1.5; /* comfortable reading spacing between lines */
+  font-weight: 400; /* normal (not bold) text by default */
+
+  color-scheme: light dark; /* tells the browser this app supports both light and dark mode */
+  color: rgba(
+    255,
+    255,
+    255,
+    0.87
+  ); /* near-white text — slightly transparent for softer contrast */
+  background-color: #242424; /* dark charcoal background */
+
+  font-synthesis: none; /* prevent browser from faking bold/italic if font lacks them */
+  text-rendering: optimizeLegibility; /* prioritize readability over rendering speed */
+  -webkit-font-smoothing: antialiased; /* smoother fonts on Mac/Chrome */
+  -moz-osx-font-smoothing: grayscale; /* smoother fonts on Mac/Firefox */
+}
+
+/* ── Box sizing reset ───────────────────────────────────────
+   By default, CSS adds padding and border ON TOP of width.
+   box-sizing: border-box makes width INCLUDE padding and
+   border — much more predictable for layout.
+   The * selector applies this to every element at once.      */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* width and height include padding and border */
+  margin: 0; /* remove default browser margins from all elements */
+  padding: 0; /* remove default browser padding from all elements */
+}
+
+/* ── Global link styles ─────────────────────────────────────
+   Default appearance for every <a> tag in the app.
+   app.css can override these for specific links like
+   .navbar a if a different look is needed there.             */
+a {
+  font-weight: 500; /* slightly bolder than body text */
+  color: #646cff; /* purple-blue link color */
+  text-decoration: inherit; /* remove default underline */
+}
+a:hover {
+  color: #535bf2; /* darker purple on hover */
+}
+
+/* ── Body ───────────────────────────────────────────────────
+   Base page layout — ensures the app fills the full viewport
+   height even on short-content pages.                        */
+body {
+  margin: 0; /* remove any default body margin */
+  min-width: 320px; /* prevent layout from collapsing on very small screens */
+  min-height: 100vh; /* page is always at least the full viewport height */
+}
+
+/* ── Headings ───────────────────────────────────────────────
+   Global h1 size. Pages can override this with their own
+   heading styles if needed.                                  */
+h1 {
+  font-size: 3.2em; /* large display heading */
+  line-height: 1.1; /* tighter line spacing for big text */
+}
+
+/* ── Global button styles ───────────────────────────────────
+   Applies to EVERY button in the app — including the Like,
+   Show Description, and Reset All Likes buttons.
+   To style buttons differently in a specific component,
+   use a more specific selector in app.css, for example:
+   .book-actions button { background-color: navy; }
+   That will override these defaults for those buttons only.  */
+button {
+  border-radius: 8px; /* rounded corners */
+  border: 1px solid transparent; /* invisible border — becomes visible on hover */
+  padding: 0.2em 1em; /* vertical and horizontal inner spacing */
+  margin: 0.4em; /* outer spacing around every button */
+  font-size: 0.7em; /* slightly smaller than body text */
+  font-weight: 500; /* medium weight */
+  font-family: inherit; /* use the same font as the rest of the app */
+  background-color: #1505f0; /* bright blue background */
+  cursor: pointer; /* show hand cursor on hover */
+  transition: border-color 0.25s; /* smooth border color change on hover */
+}
+
+/* ── Button hover ───────────────────────────────────────────
+   Reveals the border on hover to give a subtle outline
+   effect without changing the background.                    */
+button:hover {
+  border-color: #646cff; /* purple-blue border appears on hover */
+}
+
+/* ── Button focus ───────────────────────────────────────────
+   Restores the browser's default focus ring for keyboard
+   and accessibility navigation. Never remove focus styles —
+   they are essential for users who navigate without a mouse. */
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color; /* browser's native focus ring */
+}
+/*:root is the <html> element and is the right place for CSS custom properties and font defaults 
+because everything inherits from it. body is just for layout properties like margin and min-height.
+The box-sizing reset — this is the single most important line in any stylesheet. 
+Without it, adding padding: 1rem to a width: 250px card would make it 266px wide and break 
+your grid. With border-box, the width stays exactly 250px.
+If you wanted the book buttons to look different from other buttons in the app, you'd add a more specific selector in app.css that overrides the global rule:
+css.book-actions button {
+  background-color: #2b4c9b;  /* only affects buttons inside .book-actions 
+  font-size: 0.8rem;
+}
+The more specific selector (.book-actions button) always wins over the generic (button) — 
+that's CSS specificity. This is worth teaching as a class discussion: index.css 
+sets the default look for the whole app, 
+app.css overrides for specific components.*/

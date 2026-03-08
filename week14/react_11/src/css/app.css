@@ -1,0 +1,178 @@
+/* ── Root container ─────────────────────────────────────────
+   Centers the entire app and caps its width on wide screens  */
+#root {
+  max-width: 1280px; /* stop the layout from stretching too wide */
+  margin: 0 auto; /* center the container horizontally */
+  padding: 2rem; /* breathing room on all sides */
+  text-align: center; /* center inline content like headings */
+}
+
+/* ── Book grid ──────────────────────────────────────────────
+   Responsive grid that automatically creates as many columns
+   as will fit, each at least 250px wide                      */
+.book-grid {
+  display: grid; /* CSS grid layout */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  ); /* auto columns, min 250px, max equal share */
+  gap: 1rem; /* space between cards */
+  margin-top: 1rem; /* space above the grid */
+  align-items: start; /* each row sizes to its own content — expanding one card won't stretch its neighbors */
+}
+
+/* ── Book card ──────────────────────────────────────────────
+   Individual card container. Uses flexbox so inner content
+   stacks vertically and the action buttons can be pushed
+   to the bottom with margin-top: auto on .book-actions      */
+.book-card {
+  display: flex; /* stack children vertically */
+  flex-direction: column; /* top to bottom: image → title → author → buttons */
+  justify-content: flex-start; /* content starts at the top */
+  border: 0.1rem solid #e20a0a; /* red border */
+  padding: 0.8rem; /* inner spacing */
+  border-radius: 0.5rem; /* rounded corners */
+  width: 100%; /* fill the grid column */
+  min-height: 520px; /* baseline height so cards look consistent even with
+                              short content — unlike height: 100%, this does NOT
+                              force neighboring cards to match */
+}
+
+/* ── Card hover effect ──────────────────────────────────────
+   Subtle lift on hover to signal interactivity              */
+.book-card:hover {
+  transform: translateY(-3px); /* nudge the card upward */
+}
+
+/* ── Book cover image ───────────────────────────────────────
+   Fills the top of the card, cropped to a consistent height  */
+.book-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* consistent square box for all images */
+  object-fit: cover; /* fill the box, crop the edges */
+  object-position: top; /* keep the top of the image visible */
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Book title ─────────────────────────────────────────────
+   The book's title inside the card                           */
+.book-title {
+  font-size: 1rem; /* slightly larger than body text */
+  font-weight: 700; /* bold */
+  margin-bottom: 0.25rem; /* small gap between title and author */
+  text-align: left; /* left-align for readability */
+}
+
+/* ── Book author ────────────────────────────────────────────
+   The "by Author Name" line under the title                  */
+.book-author {
+  font-size: 0.85rem; /* smaller than the title */
+  font-style: italic; /* conventional italic for author credit */
+  color: #a0aec0; /* muted gray so title stays dominant */
+  margin-bottom: 0.5rem; /* space before the More Info link */
+  text-align: left;
+}
+
+/* ── More Info link ─────────────────────────────────────────
+   Overrides the global <a> style just inside the card        */
+.book-link {
+  display: inline-block; /* allows margin and padding to apply */
+  font-size: 0.8rem; /* smaller than body text */
+  color: #a78bfa; /* lighter purple to stand out on dark cards */
+  margin-bottom: 0.5rem; /* space before the description */
+  text-align: left;
+}
+
+.book-link:hover {
+  color: #c4b5fd; /* lighten on hover */
+}
+
+/* ── Card action buttons ────────────────────────────────────
+   Row of buttons at the bottom of every card.
+   margin-top: auto pushes this section to the bottom of the
+   flex container, keeping buttons aligned across all cards   */
+.book-actions {
+  display: flex; /* lay buttons out side by side */
+  gap: 0.45rem; /* small space between buttons */
+  margin-top: auto; /* push to bottom of the card */
+  justify-content: center; /* center the buttons horizontally */
+}
+
+/* ── Description text ───────────────────────────────────────
+   Shown or hidden by the toggle button via React state       */
+.book-description {
+  font-size: 0.9rem; /* slightly smaller than body text */
+  margin-top: 0.5rem; /* space above the paragraph */
+  text-indent: 2em; /* indent the first line like a printed paragraph */
+  text-align: left; /* left-align for readability */
+  color: aliceblue; /* light color for contrast on dark cards */
+}
+
+/* ── Featured badge ─────────────────────────────────────────
+   Label that appears on books where featured === true        */
+.book-featured {
+  display: block; /* take up full width of its position */
+  background-color: red; /* bold red background */
+  border-radius: 8px; /* pill-style rounded corners */
+  font-size: 0.8rem; /* small label text */
+  padding: 0.2rem 0.5rem; /* breathing room inside the badge */
+  margin-bottom: 0.5rem; /* space between badge and title */
+}
+
+/* ── Navbar ─────────────────────────────────────────────────
+   Flex row with brand on the left, links on the right       */
+.navbar {
+  display: flex; /* lay brand and links in a row */
+  align-items: center; /* vertically center everything */
+  justify-content: space-between; /* brand left, links right */
+  background-color: rgb(96, 80, 244); /* purple background */
+  border-radius: 0.5rem; /* rounded corners */
+  padding: 0.5rem 1rem; /* inner spacing */
+  width: 100%; /* span the full container width */
+}
+
+/* ── Navbar brand ───────────────────────────────────────────
+   Emoji and title grouped together on the left              */
+.navbar__brand {
+  display: flex; /* put emoji and h4 side by side */
+  align-items: center; /* vertically center them */
+  gap: 0.5rem; /* space between emoji and title */
+  color: #f8f8f9; /* near-white text */
+}
+
+.navbar__brand h4 {
+  margin: 0; /* remove default h4 margin */
+  font-size: 1rem; /* keep it from being too large */
+}
+
+/* ── Navbar links ───────────────────────────────────────────
+   Links grouped together on the right                       */
+.navbar__links {
+  display: flex; /* lay links in a row */
+  gap: 1rem; /* space between links */
+  align-items: center; /* vertically center the links */
+}
+
+/* ── Link styles ────────────────────────────────────────────
+   Overrides the global <a> style inside the navbar          */
+.navbar a {
+  font-weight: 500; /* medium weight */
+  color: #f8f8f9; /* near-white text */
+  text-decoration: inherit; /* remove underline */
+}
+
+.navbar a:hover {
+  color: #c4b5fd; /* lighter purple on hover */
+}
+/*cover = consistent layout, sacrifice some image
+contain = preserve full image, sacrifice consistent layout
+For a grid of cards where visual consistency matters, cover 
+wins every time. 
+You see this on Netflix, Spotify, Amazon — 
+every card image is the same size regardless of what the 
+original image dimensions are. The grid looks clean and professional 
+because the layout is predictable.
+contain is better when the image itself is the point and cropping 
+would lose important information — like a product diagram, a map, 
+or a chart where every pixel matters.*/
