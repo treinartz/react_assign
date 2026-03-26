@@ -1,0 +1,166 @@
+/*----------------*/
+/* Root Container */
+/*----------------*/
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: #646cff;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 2rem;
+  gap: 2rem;
+}
+.navbar__title {
+  color: white;
+  margin-right: auto;
+}
+
+.navbar__links {
+  color: white;
+}
+/*----------------*/
+/* Book Grid Block */
+/*----------------*/
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  justify-content: center;
+}
+
+/*----------------*/
+/* Book Card Block */
+/*----------------*/
+.book-card {
+  display: flex; /* stack children vertically */
+  flex-direction: column;
+  align-items: center; /* center horizontally */
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  border: 1px solid #ffdd57; /* optional border */
+  text-align: center; /* centers inline elements like button */
+  position: relative; /* needed for badge positioning */
+}
+
+/* Modifier: hover effect */
+.book-card--hoverable:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Modifier: featured card */
+.book-card--featured {
+  border: 5px solid #ff0015; /* thicker, bright red border */
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 6px 10px rgba(255, 215, 0, 0.3);
+}
+
+.book-card__badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff0015;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Modifier: large card */
+.book-card--large {
+  padding: 2rem;
+  font-size: 1.1rem;
+}
+
+/*----------------*/
+/* Elements of Book Card */
+/*----------------*/
+.book-card__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+  text-decoration: underline;
+  color: #ffdd57;
+}
+
+.book-card__author {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: #e0e0e0;
+}
+
+.book-card__image {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0;
+}
+.book-card__image:active {
+  transform: scale(0.98);
+}
+.book-card__description {
+  font-size: 0.9rem;
+  margin: 0.5rem 0; /* vertical spacing */
+  line-height: 1.4; /* readability */
+  text-align: left; /* keeps paragraph text aligned left */
+  text-indent: 2em; /* optional paragraph indentation */
+}
+
+/* Button centered and spaced */
+.book-card__button {
+  display: block;
+  margin: 0.5rem auto 0; /* top spacing + horizontal centering */
+  background-color: #ffdd57;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: border-color 0.25s;
+}
+
+.book-card__button:hover {
+  border-color: #646cff;
+}
+
+/* Optional link below button */
+.book-card__link {
+  display: block;
+  margin: 0.5rem auto 0; /* spacing and centered */
+  color: #646cff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.book-card__link:hover {
+  color: #535bf2;
+}
+
+/*----------------*/
+/* Responsive Tweaks */
+/*----------------*/
+@media (max-width: 600px) {
+  .book-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .book-card {
+    padding: 0.75rem;
+  }
+}
